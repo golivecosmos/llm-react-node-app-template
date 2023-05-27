@@ -1,9 +1,9 @@
 import * as fs from 'fs';
-import * as Koa from 'koa';
-import * as cors from '@koa/cors';
+import Koa from 'koa';
+import cors from '@koa/cors';
 import { koaBody } from 'koa-body';
-import * as dotenv from 'dotenv';
-import * as logger from 'koa-logger';
+import dotenv from 'dotenv';
+import logger from 'koa-logger';
 
 dotenv.config();
 
@@ -27,17 +27,18 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
-import defaultRouter from './routers/default';
-import chatRouter from './routers/chat';
+import defaultRouter from '../server/routers/default.js';
+import chatRouter from './routers/chat.js';
 
 app.use(defaultRouter.routes()).use(defaultRouter.allowedMethods());
 app.use(chatRouter.routes()).use(chatRouter.allowedMethods());
 
-const PORT = process.env.PORT;
+const PORT = 3100;
 
 main().catch(err => console.log('Error starting app:', err));
 
 async function main() {
+  console.log('Äpp is starting on port:', PORT);
+
   app.listen(PORT);
-  console.log('Äpp is Started on port:', PORT);
 }

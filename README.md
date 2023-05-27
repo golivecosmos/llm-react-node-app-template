@@ -1,8 +1,9 @@
-# Nano React App Default Javascript Template
+# LLM React App Javascript Template
 
-The default template project for [llm-react-app](https://github.com/golivecosmos/llm-react-app). It was built on top of [nano-react-app](https://github.com/nano-react-app/nano-react-app)
+This a template project for a simple chat app connected to a Large Language Model (LLM). This is built on top of [the React template app from nano-react-app](https://github.com/nano-react-app/template-js). To connect the React app to an LLM, a Node server has been added to the project.
 
-- `npm start` — This will spawn a development server with a default port of `5173`.
+- `npm start-server` — This will spawn a development node server with a default port of `5174`.
+- `npm start` — This will spawn a development server for the react frontend app with a default port of `5173`.
 - `npm run build` — This will output a production build in the `dist` directory.
 - `npm run preview` — This will run the production build locally with a default port of `5173` (this will not work if you haven't generated the production build yet).
 
@@ -10,13 +11,13 @@ The default template project for [llm-react-app](https://github.com/golivecosmos
 
 You can use the `-p` flag to specify a port for development. To do this, you can either run `npm start` with an additional flag:
 
-```
+```bash
 npm start -- --port 3000
 ```
 
 Or edit the `start` script directly:
 
-```
+```bash
 vite --port 3000
 ```
 

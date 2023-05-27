@@ -48,4 +48,4 @@ class ChatService {
   }
 }
 
-export default ChatService;
+export { ChatService };

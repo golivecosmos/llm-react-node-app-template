@@ -38,7 +38,6 @@ const Chat = () => {
         }
       }, [userInput]);
 
-    console.log({ loading, answer });
     return (
         <div>
             <input style={{ width: '50%', boxShadow: 24 }} 

@@ -2,7 +2,7 @@ import { requestClient } from './request-client';
 
 const create = async ({ userInput }) => {
     console.log('send me ', userInput);
-    const { data } = await requestClient.post('/v1/chat', { userInput }, 120000);
+    const { data } = await requestClient.post('/chat', { userInput }, 120000);
     return;
 };
 

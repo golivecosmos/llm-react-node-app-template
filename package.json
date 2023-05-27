@@ -1,17 +1,20 @@
 {
     "name": "llm-react-app-template",
     "version": "0.1.0",
-    "description": "a minimal react app with a language model",
+    "description": "a react app with a language model",
     "license": "MIT",
+    "type": "module",
     "scripts": {
         "start": "vite",
         "preview": "vite preview",
         "build": "vite build",
-        "start-server": "nodemon"
+        "start-server": "node ./server/index.js"
     },
     "dependencies": {
         "@emotion/react": "^11.11.0",
         "@emotion/styled": "^11.11.0",
+        "@koa/cors": "^4.0.0",
+        "@koa/router": "^12.0.0",
         "@mui/icons-material": "^5.11.16",
         "@mui/material": "^5.13.2",
         "dotenv": "^16.0.3",

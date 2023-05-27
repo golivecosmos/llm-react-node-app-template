@@ -1,9 +1,9 @@
-import * as Router from '@koa/router';
-import { Context } from 'koa';
-import ChatService, { chatBodyInterface, handlerDataInterface } from '../handlers/chatHandler';
+import Router from '@koa/router';
+
+import { ChatService } from '../handlers/chat_handler.js';
 
 const router = new Router({
-  prefix: '/v1/chat',
+  prefix: '/chat',
 });
 
 router.post('/', async (ctx) => {
