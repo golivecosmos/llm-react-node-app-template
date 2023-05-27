@@ -1,6 +1,6 @@
 # Nano React App Default Javascript Template
 
-The default template project for [nano-react-app](https://github.com/nano-react-app/nano-react-app).
+The default template project for [llm-react-app](https://github.com/golivecosmos/llm-react-app). It was built on top of [nano-react-app](https://github.com/nano-react-app/nano-react-app)
 
 - `npm start` — This will spawn a development server with a default port of `5173`.
 - `npm run build` — This will output a production build in the `dist` directory.

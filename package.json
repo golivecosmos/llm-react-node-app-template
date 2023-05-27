@@ -1,15 +1,26 @@
 {
-    "name": "nano-react-app-template",
+    "name": "llm-react-app-template",
     "version": "0.1.0",
     "description": "a minimal react app with a language model",
     "license": "MIT",
     "scripts": {
         "start": "vite",
         "preview": "vite preview",
-        "build": "vite build"
+        "build": "vite build",
+        "start-server": "nodemon"
     },
     "dependencies": {
+        "@emotion/react": "^11.11.0",
+        "@emotion/styled": "^11.11.0",
+        "@mui/icons-material": "^5.11.16",
+        "@mui/material": "^5.13.2",
+        "dotenv": "^16.0.3",
+        "koa": "^2.14.2",
+        "koa-body": "^6.0.1",
+        "koa-cors": "^0.0.16",
+        "koa-logger": "^3.2.1",
         "langchain": "^0.0.84",
+        "nodemon": "^2.0.22",
         "react": "^18.2.0",
         "react-dom": "^18.2.0"
     },
