@@ -1,7 +1,7 @@
 {
     "name": "nano-react-app-template",
     "version": "0.1.0",
-    "description": "Hard to get more minimal than this React app",
+    "description": "a minimal react app with a language model",
     "license": "MIT",
     "scripts": {
         "start": "vite",
@@ -9,12 +9,13 @@
         "build": "vite build"
     },
     "dependencies": {
+        "langchain": "^0.0.84",
         "react": "^18.2.0",
         "react-dom": "^18.2.0"
     },
     "devDependencies": {
         "babel-preset-nano-react-app": "^0.1.0",
-        "vite": "^4.3.8"
+        "vite": "^4.3.9"
     },
     "babel": {
         "presets": [
