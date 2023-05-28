@@ -9,7 +9,7 @@ This template is an example project for a simple Large Language Model (LLM) appl
 These are the available commands:
 
 - `npm start` — This will start a React development server for the frontend app, with a default port of `5173`.
-- `npm start-server` — This will start a Node development server for the backend app, with a default port of `3100`.
+- `npm run start-server` — This will start a Node development server for the backend app, with a default port of `3100`.
 
 - `npm run build` — This will output a production build of the frontend app in the `dist` directory.
 - `npm run preview` — This will run the production build of the frontend app locally with a default port of `5173` (_note_: this will not work if you haven't generated the production build yet).
