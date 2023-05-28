@@ -4,7 +4,7 @@
 
 This template is an example project for a simple Large Language Model (LLM) application built on top of React and Node. This template was built on top of [the React template app from nano-react-app](https://github.com/nano-react-app/template-js) and updated with a Node server that uses [LangChain.js](https://github.com/hwchase17/langchainjs) to connect to supported large language models, e.g. OpenAI and Hugging Face. Use this template to easily build and run an LLM app, like the screenshot below:
 
-![](./examples/llm-react-app.png)
+![screenshot of LLM react app](./examples/llm-react-app.png)
 
 These are the available commands:
 
