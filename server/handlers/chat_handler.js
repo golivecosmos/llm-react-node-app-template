@@ -8,11 +8,11 @@ import { SerpAPI } from 'langchain/tools';
 
 class ChatService {
   static async startChat(data) {
-    const chat = new ChatOpenAI({ temperature: 0, verbose: true });
+    const chat = new ChatOpenAI({ openAIApiKey: process.env.OPENAI_API_KEY, temperature: 0, verbose: true });
     const { body: { userInput } } = data;
 
     const chatPrompt = ChatPromptTemplate.fromPromptMessages([
-      SystemMessagePromptTemplate.fromTemplate('The following is a friendly conversation between a human and an AI. The AI is talkative and provides lots of specific details from its context. If the AI does not know the answer to a question, it truthfully says it does not know. It ends a conversation with an inspiring message.'),
+      SystemMessagePromptTemplate.fromTemplate('The following is a friendly conversation between a human and an AI. The AI is talkative and provides lots of specific details from its context. If the AI does not know the answer to a question, it truthfully says it does not know.'),
       new MessagesPlaceholder('history'),
       HumanMessagePromptTemplate.fromTemplate('{input}'),
     ]);
@@ -28,23 +28,6 @@ class ChatService {
     });
 
     return response;
-
-    // Define the list of tools the agent can use
-    const tools = [
-      new SerpAPI(process.env.SERPAPI_API_KEY, {
-        location: 'Austin,Texas,United States',
-        hl: 'en',
-        gl: 'us',
-      }),
-    ];
-    // Create the agent from the chat model and the tools
-    const agent = ChatAgent.fromLLMAndTools(new ChatOpenAI(), tools);
-    // Create an executor, which calls to the agent until an answer is found
-    const executor = AgentExecutor.fromAgentAndTools({ agent, tools });
-
-    const responseG = await executor.run('How many people live in canada as of 2023?');
-
-    console.log(responseG);
   }
 }
 

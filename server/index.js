@@ -1,15 +1,14 @@
+import 'dotenv/config'
 import * as fs from 'fs';
 import Koa from 'koa';
 import cors from '@koa/cors';
 import { koaBody } from 'koa-body';
-import dotenv from 'dotenv';
 import logger from 'koa-logger';
-
-dotenv.config();
 
 // instantiate app
 const app = new Koa();
 
+console.log('process ', process.env.OPENAI_API_KEY);
 app.use(koaBody({
   jsonLimit: '10mb',
   formLimit: '10mb',

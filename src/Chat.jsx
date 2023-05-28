@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { chatServices } from './services/chat-services';
-import { CircularProgress } from '@mui/material';
+import { CircularProgress, Typography } from '@mui/material';
 import { KeyboardReturn } from '@mui/icons-material';
 
 const Chat = () => {
@@ -23,8 +23,10 @@ const Chat = () => {
         try {
             setLoading(true);
             const { response } = await chatServices.create({ userInput });
+            console.log('the chat bot res ', response);
             setAnswer(response);
           } catch (err) {
+            console.log('err ', err);
             setError(err);
             return;
           } finally {
@@ -50,7 +52,7 @@ const Chat = () => {
             <KeyboardReturn style={{ cursor: 'pointer' }}/>
             <div>
                 {loading && <CircularProgress />}
-                {answer && <p>{answer}</p>}
+                {answer && <Typography>{answer}</Typography>}
                 {error && <p>Something bad happened</p>}
             </div>
         </div>
