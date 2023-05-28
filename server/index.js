@@ -8,7 +8,6 @@ import logger from 'koa-logger';
 // instantiate app
 const app = new Koa();
 
-console.log('process ', process.env.OPENAI_API_KEY);
 app.use(koaBody({
   jsonLimit: '10mb',
   formLimit: '10mb',

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { chatServices } from './services/chat-services';
-import { CircularProgress, Typography } from '@mui/material';
+import { Grid, CircularProgress, Typography } from '@mui/material';
 import { KeyboardReturn } from '@mui/icons-material';
 
 const Chat = () => {
@@ -23,10 +23,8 @@ const Chat = () => {
         try {
             setLoading(true);
             const { response } = await chatServices.create({ userInput });
-            console.log('the chat bot res ', response);
             setAnswer(response);
           } catch (err) {
-            console.log('err ', err);
             setError(err);
             return;
           } finally {
@@ -39,23 +37,47 @@ const Chat = () => {
           setAnswer('');
         }
       }, [userInput]);
+    
+    const gridStyle = {
+      alignItems: 'center',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+    };
+
+    const inputStyle = {
+      boxShadow: 24,
+      height: '25px',
+      width: '300px',
+      minWidth: '100px',
+    }
 
     return (
-        <div>
-            <input style={{ width: '50%', boxShadow: 24 }} 
+        <Grid container spacing={2} style={gridStyle}>
+          <Grid item xs={8} style={{ display: 'flex', flexDirection: 'row' }}>
+            <input style={inputStyle} 
                 value={userInput} 
                 onChange={handleInputChange}
                 onKeyDown={handlSendUserInput}
                 disabled={loading}
             >
             </input>
-            <KeyboardReturn style={{ cursor: 'pointer' }}/>
+            <div style={{ marginLeft: '5px', marginTop: '5px' }}>
+              <KeyboardReturn />
+            </div>
+          </Grid>
+          <Grid item xs={8}>
             <div>
-                {loading && <CircularProgress />}
+                {loading && <div>
+                  <CircularProgress color="secondary" />
+                  <CircularProgress color="success" />
+                  <CircularProgress color="inherit" />   
+                </div>}
                 {answer && <Typography>{answer}</Typography>}
                 {error && <p>Something bad happened</p>}
             </div>
-        </div>
+          </Grid>
+        </Grid>
     );
 };
 

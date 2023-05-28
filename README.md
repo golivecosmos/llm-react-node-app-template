@@ -1,11 +1,20 @@
 # LLM React App Javascript Template
 
+## What is a LLM React App Javascript Template?
+
 This a template project for a simple chat app connected to a Large Language Model (LLM). This is built on top of [the React template app from nano-react-app](https://github.com/nano-react-app/template-js). To connect the React app to an LLM, a Node server has been added to the project.
+
+These are the available commands:
 
 - `npm start-server` — This will start a development node backend server with a default port of `3100`.
 - `npm start` — This will start a development server for the react frontend app with a default port of `5173`.
 - `npm run build` — This will output a production build in the `dist` directory.
 - `npm run preview` — This will run the production build locally with a default port of `5173` (this will not work if you haven't generated the production build yet).
+
+## Getting Started
+
+To get started, create a `.env` file by copying the `SAMPLE_env` file. Then, add your Open API key to the file.
+Now you are ready to run the server and the web app.
 
 ## Custom port
 
