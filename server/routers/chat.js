@@ -6,12 +6,14 @@ const router = new Router({
   prefix: '/chat',
 });
 
+const chatService = new ChatService();
+
 router.post('/', async (ctx) => {
   const handlerData = {};
   handlerData.body = ctx.request.body;
   handlerData.user = ctx.state.user;
 
-  const res = await ChatService.startChat(handlerData);
+  const res = await chatService.startChat(handlerData);
   ctx.body = res;
 });
 

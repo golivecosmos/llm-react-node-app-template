@@ -1,5 +1,4 @@
 import 'dotenv/config'
-import * as fs from 'fs';
 import Koa from 'koa';
 import cors from '@koa/cors';
 import { koaBody } from 'koa-body';
