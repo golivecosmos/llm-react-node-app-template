@@ -8,7 +8,7 @@ LLM React App Javascript Template 🪄
   <a href='https://twitter.com/golivecosmos'>
     <img src='https://img.shields.io/twitter/follow/golivecosmos?style=social' alt='Cosmos' style='margin-right:3px' />
   </a>
-</p>
+</p> 
 
 ## What is an LLM React Node App Javascript Template?
 
