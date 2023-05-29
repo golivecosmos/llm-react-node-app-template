@@ -1,14 +1,19 @@
 <h1 align='center' >
-LLM React App Javascript Template 🪄
+🪐 LLM React App Javascript Template 🪐
 </h1>
 <p align='center'>
     <a href='https://github.com/golivecosmos/pluto/blob/main/LICENSE'>
-    <img src='https://img.shields.io/github/license/golivecosmos/llm-react-node-app-template' alt='License' />
+        <img src='https://img.shields.io/github/license/golivecosmos/llm-react-node-app-template?style=plastic' alt='License' />
     </a>
-  <a href='https://twitter.com/golivecosmos'>
-    <img src='https://img.shields.io/twitter/follow/golivecosmos?style=social' alt='Cosmos' style='margin-right:3px' />
-  </a>
+    <a href='https://twitter.com/golivecosmos'>
+        <img src='https://img.shields.io/github/commit-activity/w/golivecosmos/llm-react-node-app-template?style=plastic' alt='Cosmos'              style='margin-right:3px' />
+    </a>
+     <a href='https://twitter.com/golivecosmos'>
+       <img src='https://img.shields.io/twitter/follow/golivecosmos' alt='Cosmos' style='margin-right:3px' />
+     </a>
 </p>
+
+https://img.shields.io/github/commit-activity/w/golivecosmos/llm-react-node-app-template?style=plastic
 
 ## What is an LLM React Node App Javascript Template?
 
