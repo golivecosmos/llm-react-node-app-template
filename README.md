@@ -1,4 +1,14 @@
-# LLM React App Javascript Template
+<h1 align='center' >
+LLM React App Javascript Template 🪄
+</h1>
+<p align='center'>
+    <a href='https://github.com/golivecosmos/pluto/blob/main/LICENSE'>
+    <img src='https://img.shields.io/github/license/golivecosmos/llm-react-node-app-template' alt='License' />
+    </a>
+  <a href='https://twitter.com/golivecosmos'>
+    <img src='https://img.shields.io/twitter/follow/golivecosmos?style=social' alt='Cosmos' style='margin-right:3px' />
+  </a>
+</p>
 
 ## What is an LLM React Node App Javascript Template?
 
