@@ -27,7 +27,7 @@ These are the available commands:
 ## Getting Started
 
 To get started, create a `.env` file by copying the `SAMPLE_env` file. Then, add your Open API key to the file.
-Now you are ready to run the server and the web app.
+Now you are ready to run the server and the web app. For step-by-step instructions follow [this tutorial on running an LLM React Node app](https://blog.golivecosmos.com/build-an-llm-app-with-node-react-and-langchain-js/).
 
 ## Custom port
 
