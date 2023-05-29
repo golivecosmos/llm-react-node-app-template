@@ -8,11 +8,11 @@ This template is an example project for a simple Large Language Model (LLM) appl
 
 These are the available commands:
 
-- `npm start` — This will start a React development server for the frontend app, with a default port of `5173`.
-- `npm start-server` — This will start a Node development server for the backend app, with a default port of `3100`.
+- `yarn start` — This will start a React development server for the frontend app, with a default port of `5173`.
+- `yarn start-server` — This will start a Node development server for the backend app, with a default port of `3100`.
 
-- `npm run build` — This will output a production build of the frontend app in the `dist` directory.
-- `npm run preview` — This will run the production build of the frontend app locally with a default port of `5173` (_note_: this will not work if you haven't generated the production build yet).
+- `yarn build` — This will output a production build of the frontend app in the `dist` directory.
+- `yarn preview` — This will run the production build of the frontend app locally with a default port of `5173` (_note_: this will not work if you haven't generated the production build yet).
 
 ## Getting Started
 
@@ -24,7 +24,7 @@ Now you are ready to run the server and the web app.
 You can use the `-p` flag to specify a port for development. To do this, you can either run `npm start` with an additional flag:
 
 ```bash
-npm start -- --port 3000
+yarn start -- --port 3000
 ```
 
 Or edit the `start` script directly:

@@ -7,10 +7,10 @@ const Chat = () => {
     const [userInput, setUserInput] = useState('');
     const [loading, setLoading] = useState(false);
     const [answer, setAnswer] = useState('');
-    const [error, setError] = useState(null);
+    const [error, setError] = useState('');
 
     const handleInputChange = (event) => {
-        setError(null);
+        setError('');
         setUserInput(event.target.value);
     };
 
