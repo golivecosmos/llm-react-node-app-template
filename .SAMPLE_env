@@ -1,5 +1,5 @@
-// Set which model you want to use
-ENABLED_MODEL="HUGGINGFACEHUB"
+// Set which model provider you want to use, HUGGING_FACE or OPEN_AI
+ENABLED_MODEL_STORE="HUGGING_FACE"
 
 // Hugging Face API Key
 HUGGINGFACEHUB_API_KEY=""

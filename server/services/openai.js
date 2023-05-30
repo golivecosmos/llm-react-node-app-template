@@ -31,6 +31,7 @@ class OpenAiService {
     const response = await chain.call({
       input: userInput,
     });
+    console.log('response ', response);
    return response;
   }
 }
