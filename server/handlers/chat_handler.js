@@ -1,7 +1,13 @@
-import { ConversationChain } from 'langchain/chains';
+import * as fs from "fs";
+import { HNSWLib } from "langchain/vectorstores/hnswlib";
+import { ConversationChain, RetrievalQAChain } from 'langchain/chains';
 import { ChatOpenAI } from 'langchain/chat_models/openai';
 import { ChatPromptTemplate, HumanMessagePromptTemplate, MessagesPlaceholder, SystemMessagePromptTemplate } from 'langchain/prompts';
 import { ConversationSummaryMemory } from 'langchain/memory';
+import { OpenAIEmbeddings } from "langchain/embeddings/openai";
+import { ContextualCompressionRetriever } from "langchain/retrievers/contextual_compression";
+import { LLMChainExtractor } from "langchain/retrievers/document_compressors/chain_extract";
+import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
 
 class ChatService {
   constructor () {
@@ -13,6 +19,8 @@ class ChatService {
     ]);
 
     this.memory = new ConversationSummaryMemory({ llm: this.chat, returnMessages: true });
+
+
   }
 
   async startChat(data) {
@@ -29,6 +37,32 @@ class ChatService {
     });
 
     return response;
+  }
+
+  async startFileQa(data) {
+    const { body: { userInput } } = data;
+
+    const tmpFile = `${process.cwd()}/mlk_letter.txt`;
+    const textFromFile = fs.readFileSync(tmpFile, 'utf-8');
+
+    const baseCompressor = LLMChainExtractor.fromLLM(this.chat);
+    const textSplitter = new RecursiveCharacterTextSplitter({ chunkSize: 1000 });
+    const docs = await textSplitter.createDocuments([textFromFile]);
+
+    const vectorStore = await HNSWLib.fromDocuments(docs, new OpenAIEmbeddings());
+
+    const retriever = new ContextualCompressionRetriever({
+      baseCompressor,
+      baseRetriever: vectorStore.asRetriever(),
+    });
+
+    const chain = RetrievalQAChain.fromLLM(this.chat, retriever);
+
+    const { text } = await chain.call({
+      query: userInput,
+    });
+
+    return { response: text };
   }
 }
 

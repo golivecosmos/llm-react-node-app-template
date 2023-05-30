@@ -13,7 +13,7 @@ router.post('/', async (ctx) => {
   handlerData.body = ctx.request.body;
   handlerData.user = ctx.state.user;
 
-  const res = await chatService.startChat(handlerData);
+  const res = await chatService.startFileQa(handlerData);
   ctx.body = res;
 });
 
