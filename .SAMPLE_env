@@ -1,2 +1,8 @@
+// Set which model you want to use
+ENABLED_MODEL="HUGGINGFACEHUB"
+
+// Hugging Face API Key
+HUGGINGFACEHUB_API_KEY=""
+
 //Open API API Key
 OPENAI_API_KEY=""
