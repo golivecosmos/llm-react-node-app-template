@@ -19,8 +19,6 @@ class ChatService {
     ]);
 
     this.memory = new ConversationSummaryMemory({ llm: this.chat, returnMessages: true });
-
-
   }
 
   async startChat(data) {
