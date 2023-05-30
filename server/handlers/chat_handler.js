@@ -8,6 +8,8 @@ import { ContextualCompressionRetriever } from "langchain/retrievers/contextual_
 import { LLMChainExtractor } from "langchain/retrievers/document_compressors/chain_extract";
 import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
 import { OpenAI } from "langchain";
+import { PDFLoader } from "langchain/document_loaders/fs/pdf";
+
 
 class ChatService {
   constructor () {
@@ -53,6 +55,28 @@ class ChatService {
     const textSplitter = new RecursiveCharacterTextSplitter({ chunkSize: 1000 });
     const docs = await textSplitter.createDocuments([textFromFile]);
 
+    const vectorStore = await HNSWLib.fromDocuments(docs, new OpenAIEmbeddings());
+    const retriever = new ContextualCompressionRetriever({
+      baseCompressor,
+      baseRetriever: vectorStore.asRetriever(),
+    });
+
+    const chain = RetrievalQAChain.fromLLM(this.llm, retriever);
+
+    const { text } = await chain.call({
+      query: userInput,
+    });
+
+    return { response: text };
+  }
+
+  async startPdfQa(data) {
+    const { body: { userInput }} = data;
+
+    const loader = new PDFLoader(`${process.cwd()}/research.pdf`);
+    const docs = await loader.load();
+    
+    const baseCompressor = LLMChainExtractor.fromLLM(this.llm);
     const vectorStore = await HNSWLib.fromDocuments(docs, new OpenAIEmbeddings());
     const retriever = new ContextualCompressionRetriever({
       baseCompressor,
