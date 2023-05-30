@@ -23,18 +23,22 @@ This template is an example project for a simple Large Language Model (LLM) appl
 
 To get started, follow the below steps:
 
-1. Create an `.env` file by copying the `SAMPLE_env` file and add API keys for the models you are going to use
+1. Create an `.env` file by copying the `SAMPLE_env` file and add the model store provider you'll be using (e.g. HuggingFace or OpenAI) and the API keys for the models you are going to use
 1. Install packages
 1. Run the backend server that will start with a default port of `3100`
+
     ```bash
         yarn start-server
     ```
+
 1. Run the frontend server that will start with a default port of `5173`.
+
      ```bash
         yarn start
     ```
-   
+
     _Note:_ You can use the `-p` flag to specify a port for the frontend server. To do this, you can either run `yarn start` with an additional flag, like so:
+
     ```bash
         yarn start -- --port 3000
     ```
@@ -44,15 +48,26 @@ To get started, follow the below steps:
     ```bash
     vite --port 3000
     ```
-    
+
 Additional scripts are provided to prepare the app for production
+
 - `yarn build` — This will output a production build of the frontend app in the `dist` directory.
 - `yarn preview` — This will run the production build of the frontend app locally with a default port of `5173` (_note_: this will not work if you haven't generated the production build yet).
 
+### Tutorials
 
 👽 If you're looking for more thorough instructions follow [this tutorial on running an LLM React Node app](https://blog.golivecosmos.com/build-an-llm-app-with-node-react-and-langchain-js/). 📚
 
 -------------
 
-## Shout out to the ⭐star gazers⭐ supporting the project
+## How to Contribute
+
+Feel free to try out the template and open any issues if there's something you'd like to see added or fixed, or open a pull request to contribute.
+
+### Shout out to the ⭐star gazers⭐ supporting the project
+
 [![Stargazers repo roster for @golivecosmos/llm-react-node-app-template](https://reporoster.com/stars/golivecosmos/llm-react-node-app-template)](https://github.com/golivecosmos/llm-react-node-app-template/stargazers)
+
+### Thanks for the forks🍴
+
+[![Forkers repo roster for @golivecosmos/llm-react-node-app-template](https://reporoster.com/forks/golivecosmos/llm-react-node-app-template)](https://github.com/golivecosmos/llm-react-node-app-template/network/members)
