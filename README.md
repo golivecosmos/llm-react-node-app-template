@@ -31,7 +31,7 @@ These are the available commands:
 
 To get started, follow the below steps:
 
-1. Create an `.env` file by copying the `SAMPLE_env` file and add API keys for the models you are going to use
+1. Create an `.env` file by copying the `SAMPLE_env` file and add the model store provider you'll be using (e.g. HuggingFace or OpenAI) and the API keys for the models you are going to use
 1. Install packages
 1. Run the backend and frontend servers
 
