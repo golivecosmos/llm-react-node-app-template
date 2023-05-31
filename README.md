@@ -1,5 +1,5 @@
 <h1 align='center' >
-🪐 LLM React App Javascript Template 🪐
+LLM React App Javascript Template 🪐
 </h1>
 <p align='center'>
     <a href='https://github.com/golivecosmos/pluto/blob/main/LICENSE'>
@@ -13,9 +13,9 @@
      </a>
 </p>
 
-## What is an LLM React Node App Javascript Template?
+## What is this template?
 
-This template is an example project for a simple Large Language Model (LLM) application built on top of React and Node. This template was built on top of [the React template app from nano-react-app](https://github.com/nano-react-app/template-js) and updated with a Node server that uses [LangChain.js](https://github.com/hwchase17/langchainjs) to connect to supported large language models, e.g. OpenAI and Hugging Face. Use this template to easily build and run an LLM app, like the screenshot below:
+This template is an example project for a simple Large Language Model (LLM) application built on top of React and Node. This template was built on top of [the React template app from nano-react-app](https://github.com/nano-react-app/template-js) and updated with a Node server that uses [HuggingFace.js](https://github.com/huggingface/huggingface.js) and [LangChain.js](https://github.com/hwchase17/langchainjs) to connect to supported large language models. Use this template to easily build and run an LLM app, like the screenshot below:
 
 ![screenshot of LLM react app](./examples/llm-react-app.webp)
 
@@ -23,7 +23,7 @@ This template is an example project for a simple Large Language Model (LLM) appl
 
 To get started, follow the below steps:
 
-1. Create an `.env` file by copying the `SAMPLE_env` file and add the model store provider you'll be using (e.g. HuggingFace or OpenAI) and the API keys for the models you are going to use
+1. Create an `.env` file by copying the `SAMPLE_env` file and add the model store provider you'll be using (e.g. `HUGGING_FACE` or `OPEN_AI`) and the API keys for the models you are going to use
 1. Install packages
 1. Run the backend server that will start with a default port of `3100`
 
@@ -56,7 +56,7 @@ Additional scripts are provided to prepare the app for production
 
 ### Tutorials
 
-👽 If you're looking for more thorough instructions follow [this tutorial on running an LLM React Node app](https://blog.golivecosmos.com/build-an-llm-app-with-node-react-and-langchain-js/). 📚
+👽 Looking for more content? Check out [our tutorials on running LLM apps](https://blog.golivecosmos.com/posts/) 📚
 
 -------------
 
@@ -64,10 +64,10 @@ Additional scripts are provided to prepare the app for production
 
 Feel free to try out the template and open any issues if there's something you'd like to see added or fixed, or open a pull request to contribute.
 
-### Shout out to the ⭐star gazers⭐ supporting the project
+#### Shout out to the ⭐star gazers⭐
 
 [![Stargazers repo roster for @golivecosmos/llm-react-node-app-template](https://reporoster.com/stars/golivecosmos/llm-react-node-app-template)](https://github.com/golivecosmos/llm-react-node-app-template/stargazers)
 
-### Thanks for the forks🍴
+#### Thanks for the forks🍴
 
 [![Forkers repo roster for @golivecosmos/llm-react-node-app-template](https://reporoster.com/forks/golivecosmos/llm-react-node-app-template)](https://github.com/golivecosmos/llm-react-node-app-template/network/members)
