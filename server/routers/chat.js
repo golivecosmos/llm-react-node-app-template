@@ -13,7 +13,7 @@ router.post('/', async (ctx) => {
   handlerData.body = ctx.request.body;
   handlerData.user = ctx.state.user;
 
-  const res = await chatService.startPdfQa(handlerData);
+  const res = await chatService.startCSVQa(handlerData);
   ctx.body = res;
 });
 
