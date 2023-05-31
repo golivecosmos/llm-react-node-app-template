@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { chatServices } from './services/chat-services';
-import { Grid, CircularProgress, Typography, List, ListItem, Button } from '@mui/material';
+import { Grid, CircularProgress, Typography, Button } from '@mui/material';
 import { KeyboardReturn } from '@mui/icons-material';
 
 const styles = {
@@ -39,7 +39,6 @@ const Chat = () => {
       try {
         setLoading(true);
           const response = await chatServices.chatWithLLM({ userInput });
-          console.log({response})
           setAnswer(response);
         } catch (err) {
           setError(err);
@@ -55,7 +54,6 @@ const Chat = () => {
 
     const handleFileUpload = async () => {
       if (selectedFile) {
-        // Perform the upload logic here
         try {
           setLoading(true);
           const form = new FormData();
@@ -66,8 +64,8 @@ const Chat = () => {
             setAnswer('Successfully ingested. Ask me anything.');
           }
         } catch (err) {
-          console.log({ err });
-
+          setSelectedFile(null);
+          setError(err);
         } finally {
           setLoading(false);
         }
