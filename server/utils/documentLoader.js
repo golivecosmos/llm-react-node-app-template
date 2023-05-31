@@ -3,9 +3,8 @@ import { TextLoader } from "langchain/document_loaders/fs/text";
 import { PDFLoader } from "langchain/document_loaders/fs/pdf";
 
 const getFileLoader = (fileExt, filePath) => {
-	let loader;
-
-	switch (fileExt) {
+  let loader;
+  switch (fileExt) {
     case '.pdf': 
       loader = new PDFLoader(filePath);
       break;
