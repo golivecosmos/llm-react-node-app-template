@@ -4,32 +4,6 @@ import { Grid, CircularProgress, Typography, List, ListItem, Button } from '@mui
 import { KeyboardReturn } from '@mui/icons-material';
 
 const styles = {
-  list: { 
-    display: 'flex', 
-    alignItems: 'center', 
-    justifyContent: 'space-between', 
-    width: '60%', 
-    border: '1px solid green', 
-    borderRadius: '2rem', 
-    margin: '0 auto 2rem'
-  },
-  listItem: {
-    width: '50%', 
-    padding: '1rem', 
-    textAlign: 'center', 
-    listStyleType: 'none', 
-    cursor: 'pointer', 
-    transition: 'all 0.7s'
-  },
-  hoverListItem: {
-    width: '50%', 
-    padding: '1rem', 
-    textAlign: 'center', 
-    listStyleType: 'none', 
-    cursor: 'pointer', 
-    transition: 'all 0.7s',
-    backgroundColor: '#39A2DB'
-  },
   grid: {
     alignItems: 'center',
     display: 'flex',
@@ -44,25 +18,12 @@ const styles = {
   }
 }
 
-const Tabs = ({ activeTab, setActiveTab }) => {
-  return (
-    <List style={styles.list}>
-      <ListItem onClick={() => setActiveTab('chat')} style={ activeTab === 'chat' ? styles.hoverListItem : styles.listItem}>
-        Chat
-      </ListItem>
-      <ListItem onClick={() => setActiveTab('text')} style={ activeTab === 'text' ? styles.hoverListItem : styles.listItem}>
-        Text file
-      </ListItem>
-    </List>
-  );
-};
-
 const Chat = () => {
     const [userInput, setUserInput] = useState('');
     const [loading, setLoading] = useState(false);
     const [answer, setAnswer] = useState('');
     const [error, setError] = useState('');
-    const [activeTab, setActiveTab] = useState('text');
+    const [activeTab, setActiveTab] = useState('chat');
     const [selectedFile, setSelectedFile] = useState(null);
 
     const handleInputChange = (event) => {
@@ -109,25 +70,26 @@ const Chat = () => {
 
     return (
         <Grid container spacing={2} style={styles.grid}>
-          <Tabs activeTab={activeTab} setActiveTab={setActiveTab}></Tabs>
           <Grid item xs={8} style={{ display: 'flex', flexDirection: 'column' }}>
-            <input style={styles.input} 
+            <div style={{ display: 'flex' }}>
+              <input style={styles.input} 
                 value={userInput} 
                 onChange={handleInputChange}
                 onKeyDown={handlSendUserInput}
                 disabled={loading}
               />
+              
+              <KeyboardReturn style={{ marginLeft: '5px', marginTop: '5px' }} />
+            </div>
 
-              {activeTab === 'text' && <input accept="image/*" id="file-input" type="file" onChange={handleFileChange}/>}
-
-              <Typography variant="subtitle1">
-                {(selectedFile) ? `Selected file: ${selectedFile.name}` : 'No file selected'}
-              </Typography>
+            <div style={{ marginTop: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              <input accept="image/*" id="file-input" type="file" onChange={handleFileChange}/>
               {selectedFile && (
                 <Button>
                   Upload
                 </Button>
               )}
+            </div>
           </Grid>
           <Grid item xs={8}>
             <div>
