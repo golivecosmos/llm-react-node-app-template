@@ -6,18 +6,18 @@ const getFileLoader = (fileExt, filePath) => {
 	let loader;
 
 	switch (fileExt) {
-		case '.pdf': 
-			loader = new PDFLoader(filePath);
-			break;
-		case '.txt': 
-			loader = new TextLoader(filePath);
-			break;
-		case '.csv': 
-			loader = new CSVLoader(filePath);
-			break;
-		default: 
-			console.log('unsupported format');
-			break;
+    case '.pdf': 
+      loader = new PDFLoader(filePath);
+      break;
+    case '.txt': 
+      loader = new TextLoader(filePath);
+      break;
+    case '.csv': 
+      loader = new CSVLoader(filePath);
+      break;
+    default: 
+      console.log('unsupported format');
+      break;
 	}
 
 	return loader;
