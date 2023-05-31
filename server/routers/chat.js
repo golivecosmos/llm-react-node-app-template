@@ -17,4 +17,12 @@ router.post('/', async (ctx) => {
   ctx.body = res;
 });
 
+router.post('/ingest', async (ctx) => {
+  const handlerData = {};
+  handlerData.files = ctx.request.files;
+  handlerData.user = ctx.state.user;
+  const res = await chatService.ingestFile(handlerData);
+  ctx.body = res;
+});
+
 export default router;
