@@ -9,7 +9,7 @@ class HuggingFaceService {
     }
 
     ingestFile() {
-      console.log('this is not implement for HuggingFace yet');
+      console.log('this is not implemented for HuggingFace yet');
     }
 
     async call(userInput) {
