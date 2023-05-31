@@ -18,8 +18,8 @@ const getFileLoader = (fileExt, filePath) => {
       console.log('unsupported format');
       break;
 	}
-
-	return loader;
+  
+  return loader;
 };
 
 
