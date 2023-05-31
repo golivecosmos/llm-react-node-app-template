@@ -8,11 +8,12 @@
         "start": "vite",
         "preview": "vite preview",
         "build": "vite build",
-        "start-server": "node ./server/index.js"
+        "start-server": "nodemon ./server/index.js"
     },
     "dependencies": {
         "@emotion/react": "^11.11.0",
         "@emotion/styled": "^11.11.0",
+        "@huggingface/inference": "^2.5.0",
         "@koa/cors": "^4.0.0",
         "@koa/router": "^12.0.0",
         "@mui/icons-material": "^5.11.16",

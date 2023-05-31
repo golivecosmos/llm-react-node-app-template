@@ -1,47 +1,24 @@
 import { HNSWLib } from "langchain/vectorstores/hnswlib";
-import { ConversationChain, RetrievalQAChain } from 'langchain/chains';
-import { PromptTemplate } from 'langchain/prompts';
-import { ConversationSummaryMemory } from 'langchain/memory';
+import { RetrievalQAChain } from 'langchain/chains';
 import { OpenAIEmbeddings } from "langchain/embeddings/openai";
 import { ContextualCompressionRetriever } from "langchain/retrievers/contextual_compression";
 import { LLMChainExtractor } from "langchain/retrievers/document_compressors/chain_extract";
 import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
-import { OpenAI } from "langchain";
+
 import { PDFLoader } from "langchain/document_loaders/fs/pdf";
 import { CSVLoader } from "langchain/document_loaders/fs/csv";
 import { GithubRepoLoader } from "langchain/document_loaders/web/github";
 
+import { MODEL_STORES, enabledModel } from '../config/model_store_constants.js';
 
 class ChatService {
   constructor () {
-    this.llm = new OpenAI({ temperature: 0, verbose: true });
-    this.prompt =
-    PromptTemplate.fromTemplate(`The following is a friendly conversation between a human and an AI. The AI is talkative and provides lots of specific details from its context. If the AI does not know the answer to a question, it truthfully says it does not know.
-
-    Relevant pieces of previous conversation:
-    {history}
-
-    (You do not need to use these pieces of information if not relevant)
-
-    Current conversation:
-    Human: {input}
-    AI:`);
-  
-    this.memory = new ConversationSummaryMemory({ llm: this.chat, returnMessages: true });
+    this.model = new MODEL_STORES[enabledModel]
   }
 
   async startChat(data) {
     const { body: { userInput } } = data;
-
-    const chain = new ConversationChain({
-      memory: this.memory,
-      prompt: this.chatPrompt,
-      llm: this.chat,
-    });
-
-    const response = await chain.call({
-      input: userInput,
-    });
+    const response = await this.model.call(userInput);
 
     return response;
   }
