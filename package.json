@@ -1,7 +1,7 @@
 {
     "name": "llm-react-app-template",
-    "version": "0.1.0",
-    "description": "a react app with a language model",
+    "version": "0.0.4",
+    "description": "a react app with a large language model",
     "license": "MIT",
     "type": "module",
     "scripts": {
@@ -20,6 +20,7 @@
         "@mui/material": "^5.13.2",
         "@xenova/transformers": "^2.0.2",
         "add": "^2.0.6",
+        "axios": "^1.4.0",
         "chromadb": "^1.5.1",
         "d3-dsv": "2",
         "dotenv": "^16.0.3",

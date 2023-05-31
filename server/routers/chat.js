@@ -13,7 +13,15 @@ router.post('/', async (ctx) => {
   handlerData.body = ctx.request.body;
   handlerData.user = ctx.state.user;
 
-  const res = await chatService.startCSVQa(handlerData);
+  const res = await chatService.startChat(handlerData);
+  ctx.body = res;
+});
+
+router.post('/ingest', async (ctx) => {
+  const handlerData = {};
+  handlerData.files = ctx.request.files;
+  handlerData.user = ctx.state.user;
+  const res = await chatService.ingestFile(handlerData);
   ctx.body = res;
 });
 

@@ -23,7 +23,6 @@ const Chat = () => {
     const [loading, setLoading] = useState(false);
     const [answer, setAnswer] = useState('');
     const [error, setError] = useState('');
-    const [activeTab, setActiveTab] = useState('chat');
     const [selectedFile, setSelectedFile] = useState(null);
 
     const handleInputChange = (event) => {
@@ -39,7 +38,8 @@ const Chat = () => {
 
       try {
         setLoading(true);
-          const { response } = await chatServices.chatWithLLM({ userInput });
+          const response = await chatServices.chatWithLLM({ userInput });
+          console.log({response})
           setAnswer(response);
         } catch (err) {
           setError(err);
@@ -53,12 +53,24 @@ const Chat = () => {
       setSelectedFile(event.target.files[0]);
     }
 
-    const handleFileUpload = (event) => {
+    const handleFileUpload = async () => {
       if (selectedFile) {
         // Perform the upload logic here
-        console.log('Uploading file:', selectedFile);
-        // Reset the selected file
-        setSelectedFile(null);
+        try {
+          setLoading(true);
+          const form = new FormData();
+          form.append('chat-file', selectedFile);
+    
+          const { success } = await chatServices.ingestFile({ fileInput: form })
+          if (success) {
+            setAnswer('Successfully ingested. Ask me anything.');
+          }
+        } catch (err) {
+          console.log({ err });
+
+        } finally {
+          setLoading(false);
+        }
       }
     }
 
@@ -83,9 +95,9 @@ const Chat = () => {
             </div>
 
             <div style={{ marginTop: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              <input accept="image/*" id="file-input" type="file" onChange={handleFileChange}/>
+              <input accept=".pdf,.txt,.csv" id="file-input" type="file" onChange={handleFileChange}/>
               {selectedFile && (
-                <Button>
+                <Button onClick={handleFileUpload}>
                   Upload
                 </Button>
               )}

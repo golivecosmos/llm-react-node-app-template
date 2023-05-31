@@ -18,6 +18,7 @@ app.use(logger());
 
 // CORS
 const corsOptions = {
+  origin: '*',
   allowMethods: 'OPTIONS,GET,HEAD,POST,PUT,PATCH',
   allowHeaders: ['Authorization', 'Content-Type'],
   maxAge: 300000,

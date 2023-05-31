@@ -1,6 +1,7 @@
 import { ConversationChain } from 'langchain/chains';
 import { PromptTemplate } from 'langchain/prompts';
 import { ConversationSummaryMemory } from 'langchain/memory';
+import { OpenAI } from 'langchain/llms/openai';
 
 class OpenAiService {
   constructor () {
@@ -18,23 +19,29 @@ class OpenAiService {
     AI:`);
 
     this.memory = new ConversationSummaryMemory({ llm: this.model, returnMessages: true });
+    this.vectorStore;
+    this.retriever;
+    this.chain;
   }
 
   assembleChain () {
+    if (this.chain) return { chain: this.chain, inputType: 'query', responseType: 'text' };
+
     const chain = new ConversationChain({
       memory: this.memory,
       prompt: this.prompt,
       llm: this.model,
     });
-    return chain;
+    return { chain, inputType: 'input', responseType: 'response' };
   }
 
   call = async (userInput) => {  
-    const chain = this.assembleChain();
+    const { chain, inputType, responseType } = this.assembleChain();
   
-    const response = await chain.call({
-      input: userInput,
+    const { [responseType]: response } = await chain.call({
+      [inputType]: userInput,
     });
+
    return response;
   }
 }
