@@ -141,14 +141,16 @@ class ChatService {
       indexName: "docs",
     });
 
+    vectorStore.createIndex("docsA");
+
     console.log({ ide: await vectorStore.checkIndexExists() })
 
-    const batches = embedder.sliceIntoChunks(docs, 1000);
-    for (const batch of batches) {
-      console.log({batch})
-      await vectorStore.addDocuments(batch);
+    // const batches = embedder.sliceIntoChunks(docs, 1000);
+    // for (const batch of batches) {
+    //   console.log({batch})
+    //   await vectorStore.addDocuments(batch);
       // await Promise.all(batch.map((text) => vectorStore.addDocuments(text.pageContent)));
-    }
+    // }
     
 
     // Start the batch embedding process
