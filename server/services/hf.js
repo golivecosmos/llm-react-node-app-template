@@ -8,6 +8,10 @@ class HuggingFaceService {
       this.model = new HfInference(HUGGINGFACEHUB_API_KEY);
     }
 
+    ingestFile() {
+      console.log('this is not implement for HuggingFace yet');
+    }
+
     async call(userInput) {
       // TO DO: pass in past_user_inputs for context
       const response = await this.model.conversational({

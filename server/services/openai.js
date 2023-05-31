@@ -1,7 +1,14 @@
+import path from 'path';
+import { HNSWLib } from "langchain/vectorstores/hnswlib";
+import { RetrievalQAChain } from 'langchain/chains';
+import { OpenAIEmbeddings } from "langchain/embeddings/openai";
+import { ContextualCompressionRetriever } from "langchain/retrievers/contextual_compression";
+import { LLMChainExtractor } from "langchain/retrievers/document_compressors/chain_extract";
 import { ConversationChain } from 'langchain/chains';
 import { PromptTemplate } from 'langchain/prompts';
 import { ConversationSummaryMemory } from 'langchain/memory';
 import { OpenAI } from 'langchain/llms/openai';
+import { getFileLoader } from '../utils/documentLoader.js';
 
 class OpenAiService {
   constructor () {
@@ -35,6 +42,34 @@ class OpenAiService {
     return { chain, inputType: 'input', responseType: 'response' };
   }
 
+  async ingestFile(data) {
+    const { files } = data;
+    const { originalFilename, filepath } = files['chat-file'];
+    const fileExtension = path.extname(originalFilename);
+    
+    const loader = getFileLoader(fileExtension, filepath);
+    if (!loader) {
+      throw Error('bad');
+    }
+
+    const docs = await loader.load();
+    this.vectorStore = await HNSWLib.fromDocuments(docs, new OpenAIEmbeddings());
+
+    const baseCompressor = LLMChainExtractor.fromLLM(this.model);
+    this.vectorStore = await HNSWLib.fromDocuments(docs, new OpenAIEmbeddings());
+    this.retriever = new ContextualCompressionRetriever({
+      baseCompressor,
+      baseRetriever: this.vectorStore.asRetriever(),
+    });
+
+    this.chain = RetrievalQAChain.fromLLM(
+      this.model, 
+      this.retriever, 
+      { returnSourceDocuments: true }
+    );
+    return { success: true };
+  }
+
   call = async (userInput) => {  
     const { chain, inputType, responseType } = this.assembleChain();
   
@@ -42,7 +77,7 @@ class OpenAiService {
       [inputType]: userInput,
     });
 
-   return response;
+   return { response };
   }
 }
 

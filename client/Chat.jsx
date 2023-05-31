@@ -38,7 +38,7 @@ const Chat = () => {
 
       try {
         setLoading(true);
-          const response = await chatServices.chatWithLLM({ userInput });
+          const { response } = await chatServices.chatWithLLM({ userInput });
           setAnswer(response);
         } catch (err) {
           setError(err);
