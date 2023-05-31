@@ -1,7 +1,6 @@
-import * as fs from "fs";
 import { HNSWLib } from "langchain/vectorstores/hnswlib";
 import { ConversationChain, RetrievalQAChain } from 'langchain/chains';
-import { ChatPromptTemplate, HumanMessagePromptTemplate, MessagesPlaceholder, PromptTemplate, SystemMessagePromptTemplate } from 'langchain/prompts';
+import { PromptTemplate } from 'langchain/prompts';
 import { ConversationSummaryMemory } from 'langchain/memory';
 import { OpenAIEmbeddings } from "langchain/embeddings/openai";
 import { ContextualCompressionRetriever } from "langchain/retrievers/contextual_compression";
@@ -11,12 +10,6 @@ import { OpenAI } from "langchain";
 import { PDFLoader } from "langchain/document_loaders/fs/pdf";
 import { CSVLoader } from "langchain/document_loaders/fs/csv";
 import { GithubRepoLoader } from "langchain/document_loaders/web/github";
-import { Chroma } from "langchain/vectorstores/chroma";
-import { csvLoader } from "../utils/csvLoader.js";
-import { ChromaClient } from "chromadb";
-import { embedder } from "../utils/embeddings.js";
-import { createClient } from "redis";
-import { RedisVectorStore } from "langchain/vectorstores/redis";
 
 
 class ChatService {
@@ -81,7 +74,7 @@ class ChatService {
   async startPdfQa(data) {
     const { body: { userInput }} = data;
 
-    const loader = new PDFLoader(`${process.cwd()}/research.pdf`);
+    const loader = new PDFLoader(`${process.cwd()}/synthetic_image_research.pdf`);
     const docs = await loader.load();
     
     const baseCompressor = LLMChainExtractor.fromLLM(this.llm);
@@ -126,52 +119,18 @@ class ChatService {
 
     const { body: { userInput }} = data;
 
-    // const { data: csvData, meta } = await csvLoader(`${process.cwd()}/orgs-10000.csv`);
-    // console.log({ csvData });
     const loader = new CSVLoader(`${process.cwd()}/orgs-10000.csv`);
     const docs = await loader.load();
 
-    const client = createClient({
-      url: process.env.REDIS_URL ?? "redis://localhost:6379",
-    });
-    await client.connect();
+    const vectorStore = await HNSWLib.fromDocuments(docs, new OpenAIEmbeddings());
+    const retriever = vectorStore.asRetriever();
+    const chain = RetrievalQAChain.fromLLM(this.llm, retriever, { returnSourceDocuments: true });
 
-    const vectorStore = new RedisVectorStore(new OpenAIEmbeddings(), {
-      redisClient: client,
-      indexName: "docs",
+    const { text } = await chain.call({
+      query: userInput,
     });
 
-    vectorStore.createIndex("docsA");
-
-    console.log({ ide: await vectorStore.checkIndexExists() })
-
-    // const batches = embedder.sliceIntoChunks(docs, 1000);
-    // for (const batch of batches) {
-    //   console.log({batch})
-    //   await vectorStore.addDocuments(batch);
-      // await Promise.all(batch.map((text) => vectorStore.addDocuments(text.pageContent)));
-    // }
-    
-
-    // Start the batch embedding process
-    // await embedder.init();
-    // await embedder.embedBatch(docs, 1000, async (embeddings) => {
-      // console.log({ embeddings });
-      // counter += embeddings.length;
-      //Whenever the batch embedding process returns a batch of embeddings, insert them into the index
-      // (await chromaDBClient.getCollection("org-collection")).add()
-      // progressBar.update(counter);
-    // });
-    
-    // const retriever = vectorStore.asRetriever();
-    // const chain = RetrievalQAChain.fromLLM(this.llm, retriever, { returnSourceDocuments: true });
-
-    // const { text } = await chain.call({
-    //   query: userInput,
-    // });
-
-    // console.log({ text });
-    return { response: 'text' };
+    return { response: text };
   }
 }
 

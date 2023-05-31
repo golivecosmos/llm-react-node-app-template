@@ -2,7 +2,6 @@ import fs from "fs/promises";
 import Papa from "papaparse";
 
 const csvLoader = async (filePath) => {
-    console.log('hiiiii')
     try {
         const csvAbsolutePath = await fs.realpath(filePath);
         const data = await fs.readFile(csvAbsolutePath, "utf8");
