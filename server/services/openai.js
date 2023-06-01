@@ -53,7 +53,6 @@ class OpenAiService {
     }
 
     const docs = await loader.load();
-    this.vectorStore = await HNSWLib.fromDocuments(docs, new OpenAIEmbeddings());
 
     const baseCompressor = LLMChainExtractor.fromLLM(this.model);
     this.vectorStore = await HNSWLib.fromDocuments(docs, new OpenAIEmbeddings());
